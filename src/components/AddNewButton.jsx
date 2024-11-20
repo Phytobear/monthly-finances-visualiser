@@ -1,15 +1,11 @@
 export default function AddNewButton({ onClickFunction, text, disabled }) {
   return (
     <button
-      className={`rounded-lg p-2 w-48 transition-all duration-300
+      className={`rounded-xl p-4 w-48 text-center transition-all duration-300
         ${
           disabled
-            ? `bg-gray-500 bg-opacity-80`
-            : `text-sky-900 bg-sky-200 shadow shadow-black
-            border-b-4 border-x-2 border-sky-700
-            hover:bg-sky-900 hover:text-sky-200 hover:shadow-md hover:shadow-black hover:-translate-y-1
-            
-            active:shadow-inner active:shadow-black active:bg-sky-500 active:text-sky-900 active:border-b-0 active:mb-1`
+            ? "bg-neu-dark/50 text-neu-light/50 cursor-not-allowed"
+            : "bg-neu-base text-gray-700 shadow-neu-flat hover:shadow-neu-pressed active:shadow-neu-pressed"
         }`}
       onClick={onClickFunction}
       disabled={disabled}

@@ -38,18 +38,14 @@ export default function TaxSection({
   return (
     <SectionWrapper>
       <MainHeading
-        mainColour={"bg-blue-300"}
-        hoverColour={"hover:bg-blue-600"}
-        onClickFunction={() => {
-          setTaxVisible(!taxVisible);
-        }}
+        onClickFunction={() => setTaxVisible(!taxVisible)}
         text={"Tax"}
         visibility={taxVisible}
       />
 
       {taxVisible ? (
         <>
-          <p className="text-center font-extralight mb-2">
+          <p className="text-center font-light mb-2 text-gray-600">
             All figures are yearly
           </p>
           <StatsWrapper stats={taxStats} />

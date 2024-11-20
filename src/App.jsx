@@ -244,86 +244,88 @@ export default function App() {
   // --- --- --- --- --- Main Return --- --- --- ---
   // --- --- --- --- --- --- --- --- --- --- --- ---
   return (
-    <div className="whole-page flex gap-4 flex-col p-2 items-center bg-slate-600 w-dvw min-h-dvh">
-      <h1 className=" text-slate-100 text-6xl">Play Money</h1>
+    <div className="flex gap-6 flex-col p-6 items-center w-dvw min-h-dvh bg-neu-base">
+      <h1 className="text-gray-700 text-6xl font-medium shadow-neu-flat py-3 px-6 rounded-xl">
+        Play Money
+      </h1>
+
       <HelpSection />
-      <IncomeSection
-        setIncomeVisible={setIncomeVisible}
-        incomeVisible={incomeVisible}
-        userIncome={userIncome}
-        setUserIncome={setUserIncome}
-        annualTakeHome={annualTakeHome}
-        monthlytakeHome={monthlytakeHome}
-      />
 
-      {userIncome == 0 ? (
-        <div className="flex flex-col gap-2 items-center justify-center min-h-20 mt-16 bg-green-900 text-white border border-black border-solid p-2 rounded-md w-full">
-          <p className="text-2xl font-light text-orange-300">
-            Enter your income above
-          </p>
-        </div>
-      ) : (
-        <>
-          <TaxSection
-            setTaxVisible={setTaxVisible}
-            taxVisible={taxVisible}
-            usersTaxableIncome={usersTaxableIncome}
-            nationalInsurancePayments={nationalInsurancePayments}
-            taxPaid={taxPaid}
-          />
+      <div className="w-full max-w-4xl space-y-6">
+        <IncomeSection
+          setIncomeVisible={setIncomeVisible}
+          incomeVisible={incomeVisible}
+          userIncome={userIncome}
+          setUserIncome={setUserIncome}
+          annualTakeHome={annualTakeHome}
+          monthlytakeHome={monthlytakeHome}
+        />
 
-          <ExpensesSection
-            setExpensesVisible={setExpensesVisible}
-            expensesVisible={expensesVisible}
-            expenses={expenses}
-            handleTypeChange={handleTypeChange}
-            handleDeleteType={handleDeleteType}
-            addNewField={addNewField}
-            expensesTotal={expensesTotal}
-            monthlytakeHome={monthlytakeHome}
-          />
-
-          <SavingsSection
-            setSavingsVisible={setSavingsVisible}
-            savingsVisible={savingsVisible}
-            savings={savings}
-            savingsTotal={savingsTotal}
-            savingsTypes={savingsTypes}
-            handleTypeChange={handleTypeChange}
-            handleDeleteType={handleDeleteType}
-            addNewField={addNewField}
-            expensesTotal={expensesTotal}
-            monthlytakeHome={monthlytakeHome}
-          />
-
-          {!resetVisible ? (
-            <PosNegButton
-              text="Reset All?"
-              onClickFunction={() => setResetVisible(!resetVisible)}
-              positive={false}
+        {userIncome == 0 ? (
+          <div className="bg-neu-base shadow-neu-flat rounded-2xl p-6 text-center">
+            <p className="text-2xl font-light text-gray-600">
+              Enter your income above
+            </p>
+          </div>
+        ) : (
+          <>
+            <TaxSection
+              setTaxVisible={setTaxVisible}
+              taxVisible={taxVisible}
+              usersTaxableIncome={usersTaxableIncome}
+              nationalInsurancePayments={nationalInsurancePayments}
+              taxPaid={taxPaid}
             />
-          ) : (
-            ""
-          )}
-          {resetVisible ? (
-            <div className="flex gap-10">
-              <PosNegButton
-                text="Actually Reset!"
-                onClickFunction={resetAllStats}
-                positive={false}
-              />
 
-              <PosNegButton
-                text="No!"
-                onClickFunction={() => setResetVisible(!resetVisible)}
-                positive={true}
-              />
+            <ExpensesSection
+              setExpensesVisible={setExpensesVisible}
+              expensesVisible={expensesVisible}
+              expenses={expenses}
+              handleTypeChange={handleTypeChange}
+              handleDeleteType={handleDeleteType}
+              addNewField={addNewField}
+              expensesTotal={expensesTotal}
+              monthlytakeHome={monthlytakeHome}
+            />
+
+            <SavingsSection
+              setSavingsVisible={setSavingsVisible}
+              savingsVisible={savingsVisible}
+              savings={savings}
+              savingsTotal={savingsTotal}
+              savingsTypes={savingsTypes}
+              handleTypeChange={handleTypeChange}
+              handleDeleteType={handleDeleteType}
+              addNewField={addNewField}
+              expensesTotal={expensesTotal}
+              monthlytakeHome={monthlytakeHome}
+            />
+
+            <div className="flex justify-center pt-4">
+              {!resetVisible ? (
+                <PosNegButton
+                  text="Reset All?"
+                  onClickFunction={() => setResetVisible(!resetVisible)}
+                  positive={false}
+                />
+              ) : (
+                <div className="flex gap-6">
+                  <PosNegButton
+                    text="Actually Reset!"
+                    onClickFunction={resetAllStats}
+                    positive={false}
+                  />
+                  <PosNegButton
+                    text="No!"
+                    onClickFunction={() => setResetVisible(!resetVisible)}
+                    positive={true}
+                  />
+                </div>
+              )}
             </div>
-          ) : (
-            ""
-          )}
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

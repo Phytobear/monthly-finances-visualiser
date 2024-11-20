@@ -40,64 +40,60 @@ export default function IncomeSection({
   return (
     <SectionWrapper>
       <MainHeading
-        mainColour={"bg-orange-300"}
-        hoverColour={"hover:bg-orange-600"}
-        onClickFunction={() => {
-          setIncomeVisible(!incomeVisible);
-        }}
+        onClickFunction={() => setIncomeVisible(!incomeVisible)}
         text={"Income"}
         visibility={incomeVisible}
       />
 
-      <label htmlFor="userIncome" className="text-center font-light text-lg">
+      <label
+        htmlFor="userIncome"
+        className="text-center font-light text-lg text-gray-700"
+      >
         Your Annual Income:{" "}
-        <span className="text-3xl pl-1 text-green-400">£</span>
-        {!inputVisible && (
-          <span
-            className="rounded pl-1 w-8/12  max-w-56 bg-green-600 text-3xl text-green-400 bg-opacity-5"
-            onClick={() => {
-              setInputVisible(true);
-            }}
+        {!inputVisible ? (
+          <button
+            className="ml-2 rounded-xl bg-white/90 text-3xl text-gray-700 px-4 py-2
+              shadow-neu-pressed hover:shadow-neu-component
+              transition-all duration-200"
+            onClick={() => setInputVisible(true)}
           >
+            £
             {userIncome.toLocaleString(undefined, {
               minimumFractionDigits: 0,
               maximumFractionDigits: 0,
             })}
-          </span>
+          </button>
+        ) : (
+          <input
+            id="input"
+            ref={inputref}
+            onBlur={() => setInputVisible(false)}
+            name="userIncome"
+            type="number"
+            min={0}
+            placeholder="Enter here"
+            value={userIncome === 0 ? "" : userIncome}
+            className="ml-2 rounded-xl bg-white/90 text-3xl text-gray-700 px-4 py-2
+              shadow-neu-pressed focus:shadow-neu-component
+              transition-all duration-200 outline-none max-w-48"
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                setInputVisible(false);
+              }
+            }}
+            onChange={(event) => {
+              let income = Number(event.target.value.replace(/[^0-9.]/g, ""));
+              setUserIncome(income ? parseFloat(income) : 0);
+            }}
+          />
         )}
-        <input
-          id="input"
-          ref={inputref}
-          onBlur={() => {
-            setInputVisible(false);
-          }}
-          name="userIncome"
-          type="number"
-          min={0}
-          placeholder="Enter here"
-          value={userIncome === 0 ? "" : userIncome}
-          className={`rounded pl-1 w-8/12 max-w-32 bg-green-600 text-3xl text-green-400 bg-opacity-5 focus:bg-green-300 focus:text-green-800 ${
-            inputVisible ? `inline` : `hidden`
-          }`}
-          onKeyDown={(event) => {
-            if (event.key == "Enter") {
-              setInputVisible(false);
-            }
-          }}
-          onChange={(event) => {
-            let income = Number(event.target.value.replace(/[^0-9.]/g, ""));
-            setUserIncome(income ? parseFloat(income) : 0);
-          }}
-        />
       </label>
 
-      <div
-        className={`${
-          incomeVisible ? `block` : `hidden`
-        } flex flex-col items-center gap-4 w-full`}
-      >
-        <StatsWrapper stats={incomeStats} />
-      </div>
+      {incomeVisible && (
+        <div className="w-full flex flex-col items-center gap-4">
+          <StatsWrapper stats={incomeStats} />
+        </div>
+      )}
     </SectionWrapper>
   );
 }

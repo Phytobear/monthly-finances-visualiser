@@ -5,11 +5,12 @@ export default function DeleteButton({
 }) {
   return (
     <button
-      className={`${
-        conditionalCheck
-          ? `bg-slate-400 text-black opacity-30`
-          : `bg-red-700 bg-opacity-40 text-white shadow-md border border-solid border-red-900 hover:bg-red-800 hover:border-red-700 active:shadow-md active:shadow-black `
-      } w-2/12  p-1 transition-all`}
+      className={`rounded-xl p-3 transition-all duration-200 w-2/12
+        ${
+          conditionalCheck
+            ? "bg-neu-dark/50 text-neu-light/50 cursor-not-allowed"
+            : "bg-neu-base text-gray-600 shadow-neu-flat hover:shadow-neu-pressed active:shadow-neu-pressed"
+        }`}
       disabled={conditionalCheck}
       onClick={onClickFunction}
     >

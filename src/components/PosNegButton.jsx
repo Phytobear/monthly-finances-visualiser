@@ -6,21 +6,19 @@ export default function PosNegButton({
 }) {
   return (
     <button
-      className={`${
-        positive
-          ? `text-white bg-green-600 px-3 py-1 rounded-lg shadow shadow-black cursor-pointer hover:shadow-md hover:shadow-black hover:bg-green-500  hover:text-green-900 hover:-translate-y-1 transition-all active:bg-green-600  border-b-4 border-x-2 border-green-800`
-          : `bg-red-500 text-red-100 px-3 py-1 rounded-lg shadow shadow-black cursor-pointer 
-          ${
-            conditionalCheck
-              ? ``
-              : `hover:shadow-md hover:shadow-black hover:bg-red-800  hover:text-red-200 hover:-translate-y-1 transition-all active:bg-red-600  border-b-4 border-x-2 border-red-800`
-          }`
-      } 
-          ${
-            conditionalCheck
-              ? `bg-slate-400 text-black opacity-30 cursor-default`
-              : ``
-          } `}
+      className={`px-6 py-3 rounded-xl bg-white/90 transition-all duration-200
+        ${
+          conditionalCheck
+            ? // If conditionalCheck is true (disabled state) ----------------------not 100 sure of this
+              "opacity-50 cursor-not-allowed text-gray-400"
+            : // If conditionalCheck is false, check if positive or negative
+              `${
+                positive
+                  ? "text-neu-accent hover:bg-neu-accent hover:text-white"
+                  : "text-red-500 hover:bg-red-500 hover:text-white"
+              }
+            shadow-neu-component hover:shadow-neu-pressed`
+        }`}
       onClick={onClickFunction}
       disabled={conditionalCheck}
     >
