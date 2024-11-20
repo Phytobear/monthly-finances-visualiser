@@ -244,7 +244,7 @@ export default function App() {
   // --- --- --- --- --- Main Return --- --- --- ---
   // --- --- --- --- --- --- --- --- --- --- --- ---
   return (
-    <div className="flex gap-6 flex-col p-6 items-center w-dvw min-h-dvh bg-neu-base">
+    <div className="flex gap-6 flex-col p-6 items-center w-dvw min-h-dvh bg-hero">
       <h1 className="text-gray-700 text-6xl font-medium shadow-neu-flat py-3 px-6 rounded-xl">
         Play Money
       </h1>
